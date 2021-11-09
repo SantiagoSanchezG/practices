@@ -2,4 +2,4 @@
 
 ## Primeros comandos
 
-Contiene un h1, p, image y algunas etiquetas de formulario
+Contiene un h1, p, image y algunas etiquetas de formulario.

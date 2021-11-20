@@ -36,6 +36,72 @@
                 <input type="password">
                 <input type="submit">
             </form>
+            <p><a href="listas.html">Ir a listas</a></p>
+            <!--Formatos de imganes en el navegador
+                vectores:
+                    .svg
+                mapa de bits
+                    .jpg
+                    .jpeg
+                    .png (Para transparencias)
+                    .git (para animaciones)
+                    .webp (Creado por googles combinacion de jpg y png)
+            -->
+            <img src="img/mimagen.svg" alt="Mujer en un pizarron">
+            <img src="img/myimage.jpg" width="800" alt="Otra vaina">
+            <!--
+                DevicePixelRatio
+
+                Pixeles de viewport pv
+                    son los pixeles disponibles para motrar contenido
+
+                Pixeles reales pr
+                    pixeles fisicos implementados por el fabricante de la pantalla
+
+                divicePixelRadio = PR / PV
+
+
+            -->
+            <!-- <img srcset="img/myimagen.jpg 2x, img/myimagen.jpg x4" src="img/myimage.jpg"> -->
+            <!-- <picture>
+                <source srcset="img/myimagen.jpg" media="(min-width: 800px)">
+                <img src= "img/myimagen.jpg" media = "(min-width: 100px)">
+            </picture>
+            <video src="https://www.youtube.com/watch?v=CJh8th515sM>"
+            controls></video> -->
+
+            <!--Para contenido externo-->
+            <iframe width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/CJh8th515sM" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/zBk-Hyv6ykw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <style>
+                table {
+                    border-collapse: collapse;
+                }
+                td, th{
+                    border: 1px solid white;
+                    padding: .5em;
+                }
+
+            </style>
+            <table>
+                <!--tr para filas 
+                td para celdas
+                th para abeceras
+                thead para poner cabecera-->
+                <tr>
+                    <th>LUNES</th>
+                    <th>MARTES</th>
+                </tr>
+                <tr>
+                    <td>ALGO XD</td>
+                </tr>
+            </table>
         </main>
     </body>
 </html>

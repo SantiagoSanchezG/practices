@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> 
+    <!-- <script src="script2.js"></script> -->
+    <style>
+        /*Para centrar*/
+        .page-content {
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <style>
+        canvas{
+            border: 1px solid green;
+        }
+        .bottons{
+            width: 100%;
+            display:flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .buttons button{
+            margin: 10px;
+            flex-grow: 1;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', () =>{
+    //Capturando canvas
+    var canvas = document.querySelector('#canvas');
+    //Capturar o definir el contexto 2D o 3D
+    var contexto = canvas.getContext('2d');
+
+    var crearGrillas = document.querySelector('#crearGrillas');
+    crearGrillas.addEventListener('click', () => {
+        var distanciaX = 20;
+        var distanciaY = 20;
+        var colorLinea = 'red';
+        var anchoLinea = .5;
+
+        for(var i = distanciaX + anchoLinea; i<contexto.canvas.width; i += distanciaX){
+            contexto.beginPath();
+            contexto.moveTo(i,0);
+            contexto.lineTo(i, contexto.canvas.height);
+            contexto.strokeStyle = colorLinea;
+            contexto.lineWidht = anchoLinea;
+            contexto.stroke();
+            contexto.closePath();
+        }
+        for(var i = distanciaY + anchoLinea; i<contexto.canvas.height; i += distanciaY){
+            contexto.beginPath();
+            contexto.moveTo(0,i);
+            contexto.lineTo(contexto.canvas.width,i);
+            contexto.strokeStyle = colorLinea;
+            contexto.lineWidht = anchoLinea;
+            contexto.stroke();
+            contexto.closePath();
+        } 
+    });
+    var crearEventos = document.querySelector('#crearEventos');
+    crearEventos.addEventListener('click', () => {
+    //     //Adicionar mouse move
+        // canvas.addEventListener('mousemove', (e) =>{
+            // var posicionReal = canvas.getBoundingClientRect();
+            // console.log(posicionReal);
+    //     });
+        //adicionando el mousedown
+        canvas.addEventListener('mousedown', (e) =>{
+        var posicionReal = canvas.getBoundingClientRect();
+        var x = e.clientX - posicionReal.left;
+        var y = e.clientY - posicionReal.top;
+        console.log(x,y);
+        //Adicionando el mouseup
+        // canvas.addEventListener('mouseup', (e) =>{
+        // console.log(e.clientX, e.clientY);
+        });
+    });
+    var dibujar = document.querySelector('#dibujar');
+    var posicionIncial = {};
+    var posicionFinal = {};
+    let finalizar = false;
+    dibujar.addEventListener('click', () => {
+        canvas.addEventListener('mousedown', (e) =>{
+            canvas.addEventListener('mousemove',(e) =>{
+                var posicionReal = canvas.getBoundingClientRect();
+                var x = e.clientX - posicionReal.left;
+                var y = e.clientY - posicionReal.top;
+                posicionIncial = {
+                    x: 0,
+                    y: 0
+                };
+                posicionFinal = {
+                    x,
+                    y
+                };
+                contexto.beginPath();
+                contexto.moveTo(posicionIncial.x,posicionIncial.y);
+                contexto.lineTo(posicionFinal.x, posicionFinal.y);
+                contexto.stroke();
+                contexto.closePath();
+                canvas.addEventListener('mouseup',(e) =>{
+                finalizar = true;
+                });
+            });
+        });
+        // canvas.addEventListener('mousedown', (e) =>{
+        //     var posicionReal = canvas.getBoundingClientRect();
+        //     var x = e.clientX - posicionReal.left;
+        //     var y = e.clientY - posicionReal.top;
+        //     posicionIncial = {
+        //         x,
+        //         y
+        //     };
+        // });
+        // canvas.addEventListener('mouseup', (e) =>{
+        //     var posicionReal = canvas.getBoundingClientRect();
+        //     var x = e.clientX - posicionReal.left;
+        //     var y = e.clientY - posicionReal.top;
+        //     posicionFinal = {
+        //         x,
+        //         y
+        //     };
+        //     contexto.beginPath();
+        //     contexto.moveTo(posicionIncial.x,posicionIncial.y);
+        //     contexto.lineTo(posicionFinal.x, posicionFinal.y);
+        //     contexto.stroke();
+        //     contexto.closePath();
+        // });
+    });
+});
+    </script>
+</head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+          <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Canvas</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+              <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+          </div>
+        </header>
+        <div class="mdl-layout__drawer">
+          <span class="mdl-layout-title">Title</span>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="index.html">Modulo 1</a>
+            <a class="mdl-navigation__link" href="index2.html">Modulo 2</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+          </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <!-- Your content goes here -->
+                <div class="buttons">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="crearGrillas">
+                        crear grillas
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="crearEventos">
+                        Crear eventos
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="dibujar">
+                        Dibujar
+                    </button>
+                </div>
+                <div>
+                    <canvas id="canvas" width="200" height="200">
+                        Tu navegador no soporta canvas
+                    </canvas>
+                </div>
+            </div>
+        </main>
+      </div>
+</body>
+</html>

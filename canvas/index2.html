@@ -109,11 +109,8 @@
                 contexto.lineTo(posicionFinal.x, posicionFinal.y);
                 contexto.stroke();
                 contexto.closePath();
-                canvas.addEventListener('mouseup',(e) =>{
-                finalizar = true;
                 });
             });
-        });
         // canvas.addEventListener('mousedown', (e) =>{
         //     var posicionReal = canvas.getBoundingClientRect();
         //     var x = e.clientX - posicionReal.left;
@@ -138,6 +135,44 @@
         //     contexto.closePath();
         // });
     });
+    var fondoCanvas = document.querySelector('#fondoCanvas');
+    fondoCanvas.addEventListener('click', () => {
+        //Obteniendo imagen dentro de canvas
+        var imagen = new Image();
+        imagen.src = './universo.jpg'
+        imagen.onload = () =>{
+            contexto.drawImage(imagen,0,0,200,200);
+            var w = imagen.width;
+            var h = imagen.height;
+            var imagenData = contexto.getImageData(0,0,w,h);
+            data = imagenData.data;
+            // for(var i = 0; i < data.length; i+= 4){
+            //     data[i] += 120;
+            //     data[i + 1] += 120;
+            //     data[i + 2] += 255;
+            // }
+            //**********************Para negativos****************
+            // for(var i = 0; i < data.length; i+= 4){
+            //     var promedio = (data[i] + data[i+1] + data[i+2]) / 3;
+            //     data[i] = promedio;
+            //     data[i + 1] = promedio;
+            //     data[i + 2] = promedio;
+            // }
+            //********************Para inverso
+            for(var i = 0; i < data.length; i+= 4){
+                data[i] = 255 - data[i];
+                data[i + 1] = 255 - data[i + 1];
+                data[i + 2] = 255 - data[i + 2];
+            }
+            contexto.putImageData(imagenData,0,0);
+        }
+    });
+    var texto = document.querySelector('#texto');
+    texto.addEventListener('click', () => {
+        contexto.clearRect(0,0,200,200);
+        contexto.font = '20px Arial';
+        contexto.fillText('Texto en canvas', 10,20);
+    });
 });
     </script>
 </head>
@@ -151,8 +186,8 @@
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
-              <a class="mdl-navigation__link" href="">Link</a>
-              <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="index.html">Modulo 1</a>
+              <a class="mdl-navigation__link" href="index2.html">Modulo 2</a>
               <a class="mdl-navigation__link" href="">Link</a>
               <a class="mdl-navigation__link" href="">Link</a>
             </nav>
@@ -163,7 +198,7 @@
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="index.html">Modulo 1</a>
             <a class="mdl-navigation__link" href="index2.html">Modulo 2</a>
-            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="index3.html">Modulo 3</a>
             <a class="mdl-navigation__link" href="">Link</a>
           </nav>
         </div>
@@ -179,6 +214,12 @@
                     </button>
                     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="dibujar">
                         Dibujar
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="fondoCanvas">
+                        Fondo Canvas
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="texto">
+                        Textos
                     </button>
                 </div>
                 <div>
